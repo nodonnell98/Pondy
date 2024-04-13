@@ -1,0 +1,14 @@
+<div class="flex flex-col">
+  <h1>Frog Details</h1>
+
+  <div>
+    <h2><%= @frog.name %></h2>
+    <p>Species: <%= @frog.species %></p>
+    <p>Rarity: <%= @frog.rarity %></p>
+    <p>Health: <%= @frog.health %>/<%= @frog.max_health %></p>
+    <p>Stamina: <%= @frog.stamina %>/<%= @frog.max_stamina %></p>
+  </div>
+
+  <a href="<%= edit_frog_path(@frog) %>">Edit Frog</a>
+  <a href="<%= frogs_path %>" class="bg-green-700 rounded-md p-3 text-center text-white">Back to Frogs</a>
+</div>
