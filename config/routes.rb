@@ -9,5 +9,12 @@ Rails.application.routes.draw do
   # root "posts#index"
   root 'frogs#index'
 
-  resources :frogs
+  resources :frogs do
+    member do
+      put 'complete_quest'
+    end
+  end
+
+  resources :enemies
+  resources :combats
 end

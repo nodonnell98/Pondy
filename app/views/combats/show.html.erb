@@ -1,0 +1,14 @@
+<div class="w-full flex flex-col">
+  <h1>COMBAT</h1>
+  <div class="grid grid-cols-2 gap-12">
+    <% [@combat.frog, @combat.enemy].each do |fighter| %>
+      <div class="flex flex-col p-3 border rounded-md border-black justify-start items-center">
+        <h1 class="font-bold text-5xl"><%= fighter.name %></h1>
+        <h2 class="text-xl">Level <%= fighter.level %></h2>
+        <div class="bg-red-700 text-white text-center p-1 rounded-md w-full mt-3">
+          <h2><%= fighter.health %>/<%= fighter.max_health %></h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -10,9 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_13_155450) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_13_170011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "combats", force: :cascade do |t|
+    t.bigint "frog_id", null: false
+    t.bigint "enemy_id", null: false
+    t.integer "round"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["enemy_id"], name: "index_combats_on_enemy_id"
+    t.index ["frog_id"], name: "index_combats_on_frog_id"
+  end
+
+  create_table "enemies", force: :cascade do |t|
+    t.string "name"
+    t.integer "level"
+    t.integer "health"
+    t.integer "stamina"
+    t.integer "max_health"
+    t.integer "max_stamina"
+    t.string "resource_type"
+    t.integer "resource_qty"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "frogs", force: :cascade do |t|
     t.string "name"
@@ -40,5 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_13_155450) do
     t.index ["frog_id"], name: "index_habits_on_frog_id"
   end
 
+  add_foreign_key "combats", "enemies"
+  add_foreign_key "combats", "frogs"
   add_foreign_key "habits", "frogs"
 end

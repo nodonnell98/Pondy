@@ -36,6 +36,16 @@ class FrogsController < ApplicationController
     head :no_content
   end
 
+  def complete_quest
+    return if @frog&.habit.present? && @frog.habit.completed == true
+
+    @frog = Frog.find(params[:id])
+    @frog.update(level: @frog.level + 1)
+    @frog.update(health: 10 * @frog.level, max_health: 10 * @frog.level)
+    @frog&.habit&.update(completed: true)
+    redirect_to frogs_path, notice: 'Quest completed successfully!'
+  end
+
   private
 
   def frog_params
