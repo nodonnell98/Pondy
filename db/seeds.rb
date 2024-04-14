@@ -28,7 +28,7 @@ attacks = [
     image_url: 'https://example.com/water_blast.png' },
   { name: 'Fireball', damage: 25, stamina_cost: 12, level_required: 7, element: 'Fire',
     image_url: 'https://example.com/fireball.png' },
-  { name: 'Thunder Strike', damage: 30, stamina_cost: 15, level_required: 10, element: 'Electric', image_url: 'https://example.com/thunder_strike.png' }
+  { name: 'Thunder Strike', damage: 20, stamina_cost: 15, level_required: 10, element: 'Electric', image_url: 'https://example.com/thunder_strike.png' }
 ]
 
 attacks.each do |attack_params|
