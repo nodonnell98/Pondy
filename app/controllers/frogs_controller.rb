@@ -12,8 +12,17 @@ class FrogsController < ApplicationController
   def create
     # Logic to create a new frog
     @frog = Frog.new(frog_params)
+    @frog.level = 1
+    @frog.health = 10
+    @frog.stamina = 10
+    @frog.max_health = 10
+    @frog.max_stamina = 10
+    @frog.rarity = 'Common'
+    @frog.habit = Habit.new(name: frog_params[:habit_attributes][:name], frequency: 1, count: 0, streak: 0,
+                            completed: false)
     if @frog.save
-      render json: @frog, status: :created
+      @frogs = Frog.all
+      render :index, status: :created
     else
       render json: @frog.errors, status: :unprocessable_entity
     end
@@ -50,6 +59,6 @@ class FrogsController < ApplicationController
 
   def frog_params
     params.require(:frog).permit(:name, :species, :level, :health, :stamina, :max_health, :max_stamina, :rarity,
-                                 :image_url)
+                                 :image_url, habit_attributes: [:name])
   end
 end
